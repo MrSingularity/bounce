@@ -15,6 +15,9 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/[Aa]ssets/**/*.meta
+
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
@@ -26,6 +29,10 @@
 
 # Visual Studio cache directory
 .vs/
+
+# Visual Studio Code
+.vscode/
+.vsconfig
 
 # Gradle cache directory
 .gradle/
@@ -72,3 +79,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Blender temp files
+*.blend1
+*.blend2
+*.blend3
