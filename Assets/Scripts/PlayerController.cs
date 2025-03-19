@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            ResetPosition();
+        }
     }
 
     void OnCollisionExit(Collision collision)
