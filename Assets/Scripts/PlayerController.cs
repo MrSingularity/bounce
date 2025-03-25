@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(0, 0, -horizontalInput * rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -horizontalInput * rotationSpeed * Time.fixedDeltaTime);
 
         // Aufladung starten, wenn ↑ in der Luft gedrückt wird
         if (!isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
