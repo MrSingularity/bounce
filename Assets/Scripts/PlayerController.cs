@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
     private bool isCharging = false;
     private float chargedForce;
 
+    private Animator _anim;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -59,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
             // Sofort springen mit geladener oder Standard-Kraft
             Jump();
+            _anim.SetTrigger("Jump");
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
