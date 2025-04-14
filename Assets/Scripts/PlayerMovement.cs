@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Tilt: nach links/rechts kippen
         float tilt = tiltInput.x;
