@@ -21,6 +21,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 tiltInput;
 
+    private Animator _anim;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Tilt: nach links/rechts kippen
         float tilt = tiltInput.x;
-        transform.Rotate(0, 0, tilt * rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -tilt * rotationSpeed * Time.deltaTime);
 
         // Falls geladen wird (in der Luft), Ladezeit hochzählen
         if (isCharging)
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             Jump(); // spring beim Landen sofort wieder
+            _anim.SetTrigger("Jump");
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
