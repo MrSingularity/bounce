@@ -127,5 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
         isCharging = false;
         chargedForce = 0f;
+
+        JumpCounterManager.Instance.ResetCounter();
     }
 }
