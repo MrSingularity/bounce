@@ -1595,6 +1595,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+--- !u!1 &2087179432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087179434}
+  - component: {fileID: 2087179433}
+  m_Layer: 0
+  m_Name: GrandstandSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2087179433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087179432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de48e91f6cb5b4d4b98a422b71099de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grandstandPrefab: {fileID: 4398228173125401284, guid: f67bd4e0b36e5414e8a9ba9e5aa20ce8, type: 3}
+  player: {fileID: 2096695800}
+  numberOfStands: 4
+  grandstandWidth: 15
+--- !u!4 &2087179434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087179432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.253218, y: 5.3672266, z: -12.448833}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2096695796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,3 +1892,4 @@ SceneRoots:
   - {fileID: 144242596}
   - {fileID: 199327976}
   - {fileID: 866649173}
+  - {fileID: 2087179434}
