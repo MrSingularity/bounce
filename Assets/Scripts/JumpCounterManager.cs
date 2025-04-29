@@ -12,9 +12,12 @@ public class JumpCounterManager : MonoBehaviour
     public TextMeshPro jumpText;
     private int jumpCount = 0;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -41,6 +44,11 @@ public class JumpCounterManager : MonoBehaviour
     {
         jumpCount++;
         jumpText.text = "Score: " + jumpCount;
+
+        if (jumpCount == 1 || jumpCount % 5 == 0)
+        {
+            audioSource.Play();
+        }
     }
 
     public void ResetCounter()
