@@ -4,7 +4,7 @@ public class InfiniteGrandstand : MonoBehaviour
 {
     public GameObject grandstandPrefab;
     public Transform player;
-    public int numberOfStands = 4;
+    public int numberOfStands = 6;
     public float grandstandWidth = 15.0f;
 
     private GameObject[] stands;
@@ -26,9 +26,14 @@ public class InfiniteGrandstand : MonoBehaviour
         {
             float distance = player.position.x - stand.transform.position.x;
 
-            if (distance > grandstandWidth)
+            if (distance > grandstandWidth * (numberOfStands / 2))
             {
                 float newX = stand.transform.position.x + grandstandWidth * numberOfStands;
+                stand.transform.position = new Vector3(newX, stand.transform.position.y, stand.transform.position.z);
+            }
+            else if (distance < -grandstandWidth * (numberOfStands / 2))
+            {
+                float newX = stand.transform.position.x - grandstandWidth * numberOfStands;
                 stand.transform.position = new Vector3(newX, stand.transform.position.y, stand.transform.position.z);
             }
         }

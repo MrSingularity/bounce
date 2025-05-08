@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 669866011}
   - component: {fileID: 669866010}
   - component: {fileID: 669866009}
+  - component: {fileID: 669866013}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1061,12 +1062,25 @@ Transform:
   m_GameObject: {fileID: 669866008}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.7339, y: 1.43, z: 14.649862}
-  m_LocalScale: {x: 15.707001, y: 1, z: 5}
+  m_LocalPosition: {x: 5, y: 1.43, z: 14.649862}
+  m_LocalScale: {x: 10, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &669866013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669866008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b721c6d96681ca04f89b64f6afedd024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2096695800}
 --- !u!1 &711263185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,12 +1093,13 @@ GameObject:
   - component: {fileID: 711263188}
   - component: {fileID: 711263187}
   - component: {fileID: 711263186}
+  - component: {fileID: 711263190}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &711263186
 MeshCollider:
@@ -1176,6 +1191,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &711263190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711263185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b721c6d96681ca04f89b64f6afedd024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2096695800}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1346,7 @@ GameObject:
   - component: {fileID: 1008102238}
   - component: {fileID: 1008102242}
   - component: {fileID: 1008102243}
+  - component: {fileID: 1008102245}
   - component: {fileID: 1008102244}
   m_Layer: 0
   m_Name: Trampoline
@@ -1345,7 +1374,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1008102239
 MeshRenderer:
@@ -1546,6 +1575,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1008102245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008102237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2328fe912fd1e44429732cba182464f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2096695800}
+  platformLength: 100
 --- !u!1 &1297873726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +1994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grandstandPrefab: {fileID: 4398228173125401284, guid: f67bd4e0b36e5414e8a9ba9e5aa20ce8, type: 3}
   player: {fileID: 2096695800}
-  numberOfStands: 4
+  numberOfStands: 6
   grandstandWidth: 15
 --- !u!4 &2087179434
 Transform:
