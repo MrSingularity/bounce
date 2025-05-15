@@ -12,26 +12,35 @@ public class PlayerMovement : MonoBehaviour
     [Header("Tilt-Einstellungen")]
     public float rotationSpeed = 100f;
 
+    [Header("PowerUp")]
+    public float boostJumpForce = 20f;
+    public float debuffJumpForce = 5f;
+    private Color defaultColor = Color.white;
+    public Color boostColor = Color.green;
+    public Color debuffColor = Color.red;
+    private PowerUpType currentPowerUp = PowerUpType.None;
+    private bool powerUpApplied = false;
+
     private Rigidbody rb;
     private bool isGrounded = false;
     private bool isCharging = false;
     private float chargeStartTime = 0f;
     private float chargedForce = 0f;
     private Vector3 startPosition;
-
     private Vector2 tiltInput;
-
     private Animator _anim;
-
-    private void Awake()
-    {
-        _anim = GetComponent<Animator>();
-    }
+    private Renderer playerRenderer;
 
     private void Start()
     {
+        _anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         startPosition = transform.position;
+        playerRenderer = GetComponentInChildren<Renderer>();
+
+        if (playerRenderer != null)
+            defaultColor = playerRenderer.material.GetColor("_BaseColor");
+            playerRenderer.material.color = defaultColor;
     }
 
     public void OnTilt(InputValue value)
@@ -70,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wenn runtergefallen
-        if (transform.position.y < -10)
+        if (transform.position.x < -10 || transform.position.y < -10)
         {
             ResetPosition();
         }
@@ -110,6 +119,21 @@ public class PlayerMovement : MonoBehaviour
 
         float forceToUse = (chargedForce > 0f) ? chargedForce : jumpForce;
 
+        if (powerUpApplied)
+        {
+            if (currentPowerUp == PowerUpType.Boost)
+                forceToUse = boostJumpForce;
+            else if (currentPowerUp == PowerUpType.Debuff)
+                forceToUse = debuffJumpForce;
+
+            // Reset after this jump
+            currentPowerUp = PowerUpType.None;
+            powerUpApplied = false;
+
+            if (playerRenderer != null)
+                playerRenderer.material.color = defaultColor;
+        }
+
         rb.AddForce(jumpDirection * forceToUse, ForceMode.Impulse);
 
         // Reset
@@ -129,5 +153,34 @@ public class PlayerMovement : MonoBehaviour
         chargedForce = 0f;
 
         JumpCounterManager.Instance.ResetCounter();
+
+        // Reset powerup state on respawn
+        currentPowerUp = PowerUpType.None;
+        powerUpApplied = false;
+
+        if (playerRenderer != null)
+            playerRenderer.material.color = defaultColor;
+    }
+
+    public void ApplyPowerUp(PowerUpType type)
+    {
+        currentPowerUp = type;
+        powerUpApplied = true;
+
+        if (playerRenderer != null)
+        {
+            switch (type)
+            {
+                case PowerUpType.Boost:
+                    playerRenderer.material.color = boostColor;
+                    break;
+                case PowerUpType.Debuff:
+                    playerRenderer.material.color = debuffColor;
+                    break;
+                default:
+                    playerRenderer.material.color = defaultColor;
+                    break;
+            }
+        }
     }
 }
