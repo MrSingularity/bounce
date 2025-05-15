@@ -29,7 +29,7 @@ public class SpawnCollectibles : MonoBehaviour
     private void SpawnCollectible()
     {
         float xPos = player.position.x + spawnAheadDistance + Random.Range(0f, maxXOffset);
-        float yPos = Random.Range(2f, 8f);
+        float yPos = Random.Range(4f, 8f);
         Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
 
         GameObject obj = Instantiate(collectiblePrefab, spawnPos, Quaternion.identity);

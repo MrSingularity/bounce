@@ -260,10 +260,13 @@ MonoBehaviour:
   player: {fileID: 2096695800}
   firstX: 10
   spawnAheadX: 15
-  spawnIntervalX: 5
+  startIntervalX: 8
+  minIntervalX: 3
+  startSpawnChance: 0.5
+  maxSpawnChance: 0.95
+  difficultyRampDistance: 250
   minY: -1
   maxY: 1
-  obstacleSpawnChance: 0.9
 --- !u!4 &144242596
 Transform:
   m_ObjectHideFlags: 0
@@ -1327,7 +1330,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1429,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.88, y: 4.94}
+  m_AnchoredPosition: {x: 0.35, y: 4.94}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &832575517
@@ -1573,8 +1576,8 @@ GameObject:
   - component: {fileID: 1008102239}
   - component: {fileID: 1008102238}
   - component: {fileID: 1008102242}
-  - component: {fileID: 1008102243}
   - component: {fileID: 1008102245}
+  - component: {fileID: 1008102243}
   - component: {fileID: 1008102244}
   m_Layer: 0
   m_Name: Trampoline
@@ -1812,11 +1815,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1008102237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2328fe912fd1e44429732cba182464f2, type: 3}
+  m_Script: {fileID: 11500000, guid: b721c6d96681ca04f89b64f6afedd024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2096695800}
-  platformLength: 100
 --- !u!1 &1297873726
 GameObject:
   m_ObjectHideFlags: 0

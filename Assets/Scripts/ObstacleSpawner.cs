@@ -7,10 +7,17 @@ public class ObstacleSpawner : MonoBehaviour
 
     public float firstX = 10f;
     public float spawnAheadX = 15f;
-    public float spawnIntervalX = 5f;
+
+    public float startIntervalX = 8f;
+    public float minIntervalX = 3f;
+
+    public float startSpawnChance = 0.5f;
+    public float maxSpawnChance = 0.95f;
+
+    public float difficultyRampDistance = 250f; // How much distance it takes to reach max difficulty
+
     public float minY = -1f;
     public float maxY = 1f;
-    public float obstacleSpawnChance = 0.9f;
 
     private float nextSpawnX;
 
@@ -21,13 +28,20 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Update()
     {
-        if (player.position.x + spawnAheadX >= nextSpawnX)
+        float playerX = player.position.x;
+        float progress = Mathf.Clamp01(playerX / difficultyRampDistance);
+
+        // Dynamically adjust interval and chance based on progress
+        float currentIntervalX = Mathf.Lerp(startIntervalX, minIntervalX, progress);
+        float currentSpawnChance = Mathf.Lerp(startSpawnChance, maxSpawnChance, progress);
+
+        while (player.position.x + spawnAheadX >= nextSpawnX)
         {
-            if (Random.value < obstacleSpawnChance)
+            if (Random.value < currentSpawnChance)
             {
                 SpawnObstacle(nextSpawnX);
             }
-            nextSpawnX += spawnIntervalX;
+            nextSpawnX += currentIntervalX;
         }
     }
 
