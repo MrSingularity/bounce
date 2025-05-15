@@ -11,6 +11,7 @@ public class JumpCounterManager : MonoBehaviour
 
     public TextMeshPro jumpText;
     private int jumpCount = 0;
+    private int highscore = 0;
 
     private AudioSource audioSource;
 
@@ -30,6 +31,9 @@ public class JumpCounterManager : MonoBehaviour
 
         fixedY = transform.position.y;
         fixedZ = transform.position.z;
+
+        highscore = PlayerPrefs.GetInt("Highscore", 0);
+        jumpText.text = jumpCount + " / " + highscore;
     }
 
     void LateUpdate()
@@ -43,18 +47,29 @@ public class JumpCounterManager : MonoBehaviour
     public void ObstaclePassed()
     {
         jumpCount++;
-        jumpText.text = "Score: " + jumpCount;
 
         if (jumpCount == 1 || jumpCount % 5 == 0)
         {
             audioSource.Play();
+        }
+
+        if (jumpCount > PlayerPrefs.GetInt("Highscore", 0))
+        {
+            PlayerPrefs.SetInt("Highscore", jumpCount);
+            PlayerPrefs.Save();
+            highscore = jumpCount;
+            jumpText.text = "New record: " + highscore;
+        }
+        else
+        {
+            jumpText.text = jumpCount + " / " + highscore;
         }
     }
 
     public void ResetCounter()
     {
         jumpCount = 0;
-        jumpText.text = "Score: " + jumpCount;
+        jumpText.text = jumpCount + " / " + highscore;
 
         ObstaclePassChecker[] obstacles = FindObjectsByType<ObstaclePassChecker>(FindObjectsSortMode.None);
         foreach (var obstacle in obstacles)
