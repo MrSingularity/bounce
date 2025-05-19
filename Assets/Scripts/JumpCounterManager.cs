@@ -33,7 +33,8 @@ public class JumpCounterManager : MonoBehaviour
         fixedZ = transform.position.z;
 
         highscore = PlayerPrefs.GetInt("Highscore", 0);
-        jumpText.text = jumpCount + " / " + highscore;
+        // jumpText.text = jumpCount + " / " + highscore;
+        jumpText.text = "Score: " + jumpCount;
     }
 
     void LateUpdate()
@@ -58,18 +59,20 @@ public class JumpCounterManager : MonoBehaviour
             PlayerPrefs.SetInt("Highscore", jumpCount);
             PlayerPrefs.Save();
             highscore = jumpCount;
-            jumpText.text = "New record: " + highscore;
+            // jumpText.text = "New record: " + highscore;
         }
         else
         {
-            jumpText.text = jumpCount + " / " + highscore;
+            // jumpText.text = jumpCount + " / " + highscore;
         }
+        jumpText.text = "Score: " + jumpCount;
     }
 
     public void ResetCounter()
     {
         jumpCount = 0;
-        jumpText.text = jumpCount + " / " + highscore;
+        // jumpText.text = jumpCount + " / " + highscore;
+        jumpText.text = "Score: " + jumpCount;
 
         ObstaclePassChecker[] obstacles = FindObjectsByType<ObstaclePassChecker>(FindObjectsSortMode.None);
         foreach (var obstacle in obstacles)
