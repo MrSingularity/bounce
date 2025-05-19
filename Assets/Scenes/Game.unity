@@ -265,8 +265,8 @@ MonoBehaviour:
   startSpawnChance: 0.5
   maxSpawnChance: 0.95
   difficultyRampDistance: 250
-  minY: -1
-  maxY: 1
+  minY: -0.5
+  maxY: 2
 --- !u!4 &144242596
 Transform:
   m_ObjectHideFlags: 0
