@@ -49,7 +49,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         float yPos = Random.Range(minY, maxY);
         Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
-        
+
         GameObject newObstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
         ObstaclePassChecker checker = newObstacle.GetComponent<ObstaclePassChecker>();
         if (checker != null)
