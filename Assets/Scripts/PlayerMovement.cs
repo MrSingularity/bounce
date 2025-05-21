@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Color defaultColor = Color.white;
     public Color boostColor = Color.green;
     public Color debuffColor = Color.red;
+    public GameObject trampoline;
+    private Renderer trampolineRenderer;
     private PowerUpType currentPowerUp = PowerUpType.None;
     private bool powerUpApplied = false;
 
@@ -29,18 +31,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startPosition;
     private Vector2 tiltInput;
     private Animator _anim;
-    private Renderer playerRenderer;
 
     private void Start()
     {
         _anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         startPosition = transform.position;
-        playerRenderer = GetComponentInChildren<Renderer>();
+        trampolineRenderer = trampoline.GetComponentInChildren<Renderer>();
 
-        if (playerRenderer != null)
-            defaultColor = playerRenderer.material.GetColor("_BaseColor");
-            playerRenderer.material.color = defaultColor;
+        if (trampolineRenderer != null)
+            defaultColor = trampolineRenderer.material.GetColor("_BaseColor");
+            trampolineRenderer.material.color = defaultColor;
     }
 
     public void OnTilt(InputValue value)
@@ -130,8 +131,8 @@ public class PlayerMovement : MonoBehaviour
             currentPowerUp = PowerUpType.None;
             powerUpApplied = false;
 
-            if (playerRenderer != null)
-                playerRenderer.material.color = defaultColor;
+            if (trampolineRenderer != null)
+                trampolineRenderer.material.color = defaultColor;
         }
 
         rb.AddForce(jumpDirection * forceToUse, ForceMode.Impulse);
@@ -158,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
         currentPowerUp = PowerUpType.None;
         powerUpApplied = false;
 
-        if (playerRenderer != null)
-            playerRenderer.material.color = defaultColor;
+        if (trampolineRenderer != null)
+            trampolineRenderer.material.color = defaultColor;
     }
 
     public void ApplyPowerUp(PowerUpType type)
@@ -167,18 +168,18 @@ public class PlayerMovement : MonoBehaviour
         currentPowerUp = type;
         powerUpApplied = true;
 
-        if (playerRenderer != null)
+        if (trampolineRenderer != null)
         {
             switch (type)
             {
                 case PowerUpType.Boost:
-                    playerRenderer.material.color = boostColor;
+                    trampolineRenderer.material.color = boostColor;
                     break;
                 case PowerUpType.Debuff:
-                    playerRenderer.material.color = debuffColor;
+                    trampolineRenderer.material.color = debuffColor;
                     break;
                 default:
-                    playerRenderer.material.color = defaultColor;
+                    trampolineRenderer.material.color = defaultColor;
                     break;
             }
         }
